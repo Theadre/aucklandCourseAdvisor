@@ -1,0 +1,10 @@
+mat-card {
+    margin: 3rem 0;
+    .column {
+      display: flex;
+      flex-direction: column;
+      h4 {
+        margin-bottom: 20px;
+      }
+    }
+  }

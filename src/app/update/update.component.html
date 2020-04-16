@@ -1,0 +1,37 @@
+<mat-card>
+    <form [formGroup]="myForm">
+        <div class="column">
+            <h4>{{title}}</h4>
+            <mat-form-field appearance="outline">
+                <mat-label>Code</mat-label>
+                <input matInput formControlName="code" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="title" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Prerequisites</mat-label>
+                <input matInput formControlName="prerequisites" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Restrictions</mat-label>
+                <input matInput formControlName="restrictions" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Semester</mat-label>
+                <input matInput formControlName="semester" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea matInput rows="6" formControlName="description" required></textarea>
+            </mat-form-field>
+
+        </div>
+    </form>
+
+    <div class="actions">
+        <button mat-raised-button color="primary" (click)="submit(myForm.value)" [disabled]="myForm.invalid">Confirm</button>
+        <button mat-button [routerLink]="['/list']" type="button">Undo</button>&nbsp;&nbsp;
+    </div>
+</mat-card>
