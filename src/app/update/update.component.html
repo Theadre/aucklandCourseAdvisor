@@ -2,10 +2,7 @@
     <form [formGroup]="myForm">
         <div class="column">
             <h4>{{title}}</h4>
-            <mat-form-field appearance="outline">
-                <mat-label>Code</mat-label>
-                <input matInput formControlName="code" required>
-            </mat-form-field>
+            <app-code></app-code>
             <mat-form-field appearance="outline">
                 <mat-label>Title</mat-label>
                 <input matInput formControlName="title" required>
