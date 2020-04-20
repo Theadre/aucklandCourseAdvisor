@@ -15,10 +15,10 @@
                 <mat-label>Restrictions</mat-label>
                 <input matInput formControlName="restrictions" required>
             </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Semester</mat-label>
-                <input matInput formControlName="semester" required>
-            </mat-form-field>
+            <section>
+                <mat-checkbox formControlName="semesterFirst" class="semester-margin">Semester 1</mat-checkbox>
+                <mat-checkbox formControlName="semesterSecond" class="semester-margin">Semester 2</mat-checkbox>
+            </section>
             <mat-form-field appearance="outline">
                 <mat-label>Description</mat-label>
                 <textarea matInput rows="6" formControlName="description" required></textarea>
@@ -28,7 +28,8 @@
     </form>
 
     <div class="actions">
-        <button mat-raised-button color="primary" (click)="submit(myForm.value)" [disabled]="myForm.invalid">Confirm</button>
+        <button mat-raised-button color="primary" (click)="submit(myForm.value)"
+            [disabled]="myForm.invalid">Confirm</button>
         <button mat-button [routerLink]="['/list']" type="button">Undo</button>&nbsp;&nbsp;
     </div>
 </mat-card>

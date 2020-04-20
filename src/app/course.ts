@@ -8,6 +8,6 @@ export class Course {
     title = '';
     prerequisites = '';
     restrictions = '';
-    semester = '';
+    semester = { first: false, second: false };
     description = '';
   }

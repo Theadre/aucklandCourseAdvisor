@@ -2,10 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
+import {ClassCode} from './code.interfaces';
 
 export interface StateGroup {
   letter: string;
   names: string[];
+}
+
+interface CodeGroup {
+  
 }
 
 export const _filter = (opt: string[], value: string): string[] => {

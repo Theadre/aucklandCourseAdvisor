@@ -40,20 +40,20 @@ export class UpdateComponent implements OnInit {
       title: [this.modelCourse.title, [Validators.required]],
       prerequisites: [this.modelCourse.prerequisites, [Validators.required]],
       restrictions: [this.modelCourse.restrictions, [Validators.required]],
-      semester: [this.modelCourse.semester, [Validators.required]],
+      semesterFirst: [this.modelCourse.semester.first, [Validators.required]],
+      semesterSecond: [this.modelCourse.semester.second, [Validators.required]],
       description: [this.modelCourse.description, [Validators.required]],
     });
   }
 
   //Bouton de validation
   submit(modelCourse: Course) {
-  
+    console.log(modelCourse)
     // si création 
     if (this.id === 0) {
       this.service.post(modelCourse).subscribe(r => {
         // retour à la liste de recettes
         this.router.navigate(['/list']);
- 
       });
       // Si modification
     } else {
@@ -61,8 +61,7 @@ export class UpdateComponent implements OnInit {
         // retour à la liste de recettes
         this.router.navigate(['/list']);
       });
- 
+
     }
   }
-
 }

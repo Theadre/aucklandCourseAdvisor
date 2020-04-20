@@ -14,7 +14,7 @@ export class DbFakeService {
       title: `Software development`,
       prerequisites: `768, 456`,
       restrictions: `980`,
-      semester: `semester 1, semester 2`,
+      semester: { first: true, second: false }, // semester: `semester 1, semester 2`,
       description : `You will install docker`
     },
   ];
