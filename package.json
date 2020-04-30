@@ -24,7 +24,7 @@
     "bootstrap": "^4.4.1",
     "bootstrap-css-only": "^4.4.1",
     "bootstrap-only-css": "^1.0.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
