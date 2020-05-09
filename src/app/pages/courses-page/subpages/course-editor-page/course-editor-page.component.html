@@ -1,0 +1,74 @@
+<div class="responsive-wrapper">
+    <div class="page-title-area">
+        <h1 *ngIf="!courseId">Add new course</h1>
+        <h1 *ngIf="courseId">Update course</h1>
+    </div>
+</div>
+
+<form class="responsive-wrapper" *ngIf="shouldLoadForm" [formGroup]="courseForm" (submit)="onFormSubmit($event)">
+    <!-- Hidden input to store data, maybe it is not needed but it shouldn't hurt to have -->
+    <input type="hidden" formControlName="id" />
+    <input type="hidden" formControlName="date" />
+
+    <h2 class="title-details">Course Details</h2>
+
+    <!-- Course Code Field -->
+    <mat-form-field class="code-area" appearance="outline">
+        <mat-label>Course Code</mat-label>
+        <mat-select formControlName="code" required>
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let courseCode of courseCodes" [value]="courseCode.id">{{ courseCode.name }} {{ courseCode.code }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <!-- Course Title Field -->
+    <mat-form-field class="title-area" appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput type="text" formControlName="title" required />
+    </mat-form-field>
+
+    <!-- Description Title Field -->
+    <mat-form-field class="description-area" appearance="outline">
+        <mat-label>Description</mat-label>
+        <input matInput type="text" formControlName="description" />
+    </mat-form-field>
+
+    <h2 class="title-assign-area">Assign Control</h2>
+
+    <!-- Prerequisites Title Field -->
+    <!-- FIXME: Here is the part i did not know how to handle -->
+    <mat-form-field class="prerequisites-area" appearance="outline">
+        <mat-label>Prerequisites</mat-label>
+        <input matInput type="text" />
+    </mat-form-field>
+
+    <!-- Semester Title Field -->
+    <div class="semester-area" formGroupName="semester" appearance="outline">
+        <h3>Semester</h3>
+        <mat-checkbox formControlName="first">Semester 1</mat-checkbox>
+        <mat-checkbox formControlName="second">Semester 2</mat-checkbox>
+    </div>
+
+    <!-- Semester Title Field -->
+    <div class="value-area" formGroupName="valueArea" appearance="outline">
+        <h3>All codes</h3>
+        <mat-checkbox formControlName="one">15 points</mat-checkbox>
+        <mat-checkbox formControlName="two">30 points</mat-checkbox>
+        <mat-checkbox formControlName="three">45 points</mat-checkbox>
+        <mat-checkbox formControlName="four">60 points</mat-checkbox>
+    </div>
+
+
+    <!-- Restrictions Field -->
+    <div class="restrictions-area" formArrayName="restrictions" appearance="outline">
+        <h3>Restrictions</h3>
+        <mat-checkbox *ngFor="let restriction of formRestrictionsData.controls; let i = index" [checked]="courseCodes[i].id">
+            {{ courseCodes[i].name }} {{ courseCodes[i].code }}
+        </mat-checkbox>
+    </div>
+
+    <button mat-raised-button color="primary" type="submit">
+    <span *ngIf="!courseId">Add new course</span>
+    <span *ngIf="courseId">Update course</span>
+  </button>
+</form>

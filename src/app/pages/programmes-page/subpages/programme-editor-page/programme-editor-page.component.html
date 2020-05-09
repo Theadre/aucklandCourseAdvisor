@@ -1,0 +1,81 @@
+<div class="responsive-wrapper">
+    <div class="page-title-area">
+        <h1 *ngIf="!programmeId">Add new programme</h1>
+        <h1 *ngIf="programmeId">Update programme</h1>
+    </div>
+</div>
+
+<form class="responsive-wrapper" [formGroup]="programmeForm" (submit)="onFormSubmit($event)">
+
+    <div cdkDropListGroup>
+        <div class="container-one" cdkDropListGroupName="contenaireOne">
+            <h2>Semester 1</h2>
+
+            <div cdkDropList [cdkDropListData]="items" class="list" cdkDropListSortingDisabled (cdkDropListDropped)="drop($event)">
+                <div class="box" *ngFor="let item of items" cdkDrag>{{item}}</div>
+            </div>
+        </div>
+
+        <div class="container-two" cdkDropListGroupName="contenaireTwo">
+            <h2>Semester 2</h2>
+
+            <div cdkDropList [cdkDropListData]="items" class="list" cdkDropListSortingDisabled (cdkDropListDropped)="drop($event)">
+                <div class="box" *ngFor="let item of items" cdkDrag>{{item}}</div>
+            </div>
+        </div>
+
+        <div class="container-one" cdkDropListGroupName="contenaireOne">
+            <h2>Semester 3</h2>
+
+            <div cdkDropList [cdkDropListData]="items" class="list" cdkDropListSortingDisabled (cdkDropListDropped)="drop($event)">
+                <div class="box" *ngFor="let item of items" cdkDrag>{{item}}</div>
+            </div>
+        </div>
+
+        <div class="container-one" cdkDropListGroupName="contenaireOne">
+            <h2>Semester 4</h2>
+
+            <div cdkDropList [cdkDropListData]="items" class="list" cdkDropListSortingDisabled (cdkDropListDropped)="drop($event)">
+                <div class="box" *ngFor="let item of items" cdkDrag>{{item}}</div>
+            </div>
+        </div>
+
+        <div class="container-one" cdkDropListGroupName="contenaireOne">
+            <h2>Semester 5</h2>
+
+            <div cdkDropList [cdkDropListData]="items" class="list" cdkDropListSortingDisabled (cdkDropListDropped)="drop($event)">
+                <div class="box" *ngFor="let item of items" cdkDrag>{{item}}</div>
+            </div>
+        </div>
+
+        <div class="container-one" cdkDropListGroupName="contenaireOne">
+            <h2>Semester 6</h2>
+
+            <div cdkDropList [cdkDropListData]="items" class="list" cdkDropListSortingDisabled (cdkDropListDropped)="drop($event)">
+                <div class="box" *ngFor="let item of items" cdkDrag>{{item}}</div>
+            </div>
+        </div>
+
+        <div class="container-one" cdkDropListGroupName="contenaireOne">
+            <h2>Semester 7</h2>
+
+            <div cdkDropList [cdkDropListData]="items" class="list" cdkDropListSortingDisabled (cdkDropListDropped)="drop($event)">
+                <div class="box" *ngFor="let item of items" cdkDrag>{{item}}</div>
+            </div>
+        </div>
+
+        <div class="container-one" cdkDropListGroupName="contenaireOne">
+            <h2>Semester 8</h2>
+
+            <div cdkDropList [cdkDropListData]="items" class="list" cdkDropListSortingDisabled (cdkDropListDropped)="drop($event)">
+                <div class="box" *ngFor="let item of items" cdkDrag>{{item}}</div>
+            </div>
+        </div>
+
+    </div>
+
+    <button mat-raised-button color="primary" type="submit">
+        <span *ngIf="!programmeId">Add new programme</span>
+        <span *ngIf="programmeId">Update programme</span>
+    </button>
+</form>

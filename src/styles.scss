@@ -1,28 +1,98 @@
-/* import des BootStrap */
-@import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
-@import "../node_modules/bootstrap-css-only/css/bootstrap.min.css";
+@import './scss/normalize';
+@import './scss/variables';
+@import './scss/materialTheme';
+
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body,
+app-root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-text);
+  background-color: rgb(var(--color-light-grey));
+}
+
+app-root {
+  position: relative;
+  display: block;
+}
+
+.logo {
+  font-size: 0;
+  color: transparent;
+  background-image: url('/assets/image/University-Of-Auckland-logo.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.responsive-wrapper {
+  width: 100%;
+  max-width: var(--app-max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-title);
+  font-weight: 500;
+  line-height: 1.15;
+}
 
 h1 {
-  color: #369;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 250%;
-}
-h2, h3 {
-  color: #444;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: lighter;
-}
-body {
-  margin: 2em;
-}
-body, input[type="text"], button {
-  color: #333;
-  font-family: Cambria, Georgia;
-}
-/* tous les autres */
-* {
-  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 0;
+  font-size: 2.8333em;
 }
 
-html, body { height: 100%; background-color: rgb(247, 247, 247);}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+h2 {
+  font-size: 2.5208em;
+}
+
+h3 {
+  font-size: 1.7708em;
+}
+
+h4 {
+  font-size: 1.3958em;
+}
+
+h5 {
+  font-size: 1.2292em;
+}
+
+*[mat-stroked-button] {
+  mat-icon {
+    --icon-size: 20px;
+    margin-left: 10px;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    font-size: var(--icon-size);
+  }
+}
+
+.mat-select,
+.mat-input-element,
+.mat-checkbox-label {
+  font-family: var(--font-text) !important;
+}

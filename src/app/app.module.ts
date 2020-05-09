@@ -1,51 +1,14 @@
-import { MatModule } from './mat.module';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { CodeComponent } from './update/code/code.component';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
-import { ListComponent } from './list/list.component';
-import { DetailComponent } from './detail/detail.component';
-import { UpdateComponent } from './update/update.component';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app.routing';
+
 @NgModule({
-  declarations: [
-    AppComponent,
-    ListComponent,
-    DetailComponent,
-    UpdateComponent,
-    CodeComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatModule, //import des méthodes Material Angular
-  ],
-  entryComponents: [
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
   providers: [],
-  bootstrap: [AppComponent] // Composant BootStrap
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
-
-
-
-
-
-
-
-/* npm install bootstrap-css-only
-ng add @angular/material
-
-Dans style.scss
-import des BootStrap
-@import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
-@import "../node_modules/bootstrap-css-only/css/bootstrap.min.css"; */
+export class AppModule {}

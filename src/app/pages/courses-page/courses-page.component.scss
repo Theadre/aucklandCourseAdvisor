@@ -1,0 +1,34 @@
+table {
+  width: 100%;
+  --colum-title-width: 100%;
+  --colum-date-width: 250px;
+  --colum-actions-width: 115px;
+}
+
+.mat-column-title {
+  width: calc(var(--colum-title-width) - (var(--colum-date-width) + var(--colum-actions-width)));
+}
+
+.mat-column-date {
+  width: var(--colum-date-width);
+  text-align: center;
+}
+
+.mat-column-actions {
+  width: var(--colum-actions-width);
+  text-align: center;
+
+  mat-icon {
+    --icon-size: 20px;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    font-size: var(--icon-size);
+  }
+}
+
+.table-footer {
+  padding-top: var(--app-padding);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

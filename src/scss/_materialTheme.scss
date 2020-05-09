@@ -1,0 +1,96 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+$md-university: (
+  50: #e0e9f0,
+  100: #b3c8d9,
+  200: #80a3bf,
+  300: #4d7ea5,
+  400: #266292,
+  500: #00467f,
+  600: #003f77,
+  700: #00376c,
+  800: #002f62,
+  900: #00204f,
+  A100: #82a8ff,
+  A200: #4f84ff,
+  A400: #1c60ff,
+  A700: #034fff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #ffffff,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #ffffff,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+
+$md-university-accent: (
+  50: #e0f0f4,
+  100: #b3d9e5,
+  200: #80c0d3,
+  300: #4da6c1,
+  400: #2693b4,
+  500: #0080a7,
+  600: #00789f,
+  700: #006d96,
+  800: #00638c,
+  900: #00507c,
+  A100: #a9dcff,
+  A200: #76c6ff,
+  A400: #43b1ff,
+  A700: #2aa7ff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$auckland-course-advisor-primary: mat-palette($md-university);
+$auckland-course-advisor-accent: mat-palette($md-university-accent, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$auckland-course-advisor-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$auckland-course-advisor-theme: mat-light-theme(
+  $auckland-course-advisor-primary,
+  $auckland-course-advisor-accent,
+  $auckland-course-advisor-warn
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($auckland-course-advisor-theme);

@@ -1,0 +1,15 @@
+:root {
+  // fonts
+  --font-fallback: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
+  --font-title: 'Coven', var(--font-fallback);
+  --font-text: 'Coven', var(--font-fallback);
+  // colors
+  --color-primary: 0, 70, 127;
+  --color-accent: 0, 128, 167;
+  --color-light-grey: 242, 242, 242;
+  // sizes
+  --app-padding: 25px;
+  --app-max-width: 1270px;
+  --navigation-bar-height: 70px;
+}
