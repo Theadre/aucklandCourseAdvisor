@@ -1,25 +1,28 @@
+import { of } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Injectable } from '@angular/core';
 
-import { Course, CourseCode, Programme, ProgrammeCode } from '../app.interfaces';
-import { fakeCourseCodes, fakeCourses, fakeProgrammes, fakeProgrammeCodes } from './fake-data';
+import { Course, CourseCode, Programme } from '../app.interfaces';
+import { FakeData } from './fake-data';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class DatabaseService {
   saveProgramme: any;
-  constructor() {}
+
+  constructor(private db: FakeData) {}
 
   public generateId(): string {
     return uuidv4();
   }
 
   public getCourses(): Promise<Course[]> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _reject) => {
       // ============ initialize fake api ============ //
-      resolve(fakeCourses);
+      resolve(this.db.fakeCourses);
       // =============== end fake api ================ //
     });
   }
@@ -28,7 +31,7 @@ export class DatabaseService {
     return new Promise((resolve, reject) => {
       // ============ initialize fake api ============ //
       if (id) {
-        const selectedCourse: Course = fakeCourses.find((course) => course.id === id);
+        const selectedCourse: Course = this.db.fakeCourses.find((course) => course.id === id);
         if (selectedCourse) {
           resolve(selectedCourse);
         } else {
@@ -42,9 +45,9 @@ export class DatabaseService {
   }
 
   public saveCourse(course: Course): Promise<boolean> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _reject) => {
       // ============ initialize fake api ============ //
-      fakeCourses.push(course);
+      this.db.fakeCourses.push(course);
       resolve();
       // =============== end fake api ================ //
     });
@@ -57,7 +60,7 @@ export class DatabaseService {
       this.getCourses().then(
         (storedCourses) => {
           const courseIndex = storedCourses.findIndex((c) => c.id === uuid);
-          fakeCourses[courseIndex] = { ...fakeCourses[courseIndex], ...course };
+          this.db.fakeCourses[courseIndex] = { ...this.db.fakeCourses[courseIndex], ...course };
           resolve();
         },
         () => reject()
@@ -67,7 +70,7 @@ export class DatabaseService {
   }
 
   public updateProgramme(programme: Programme): Promise<any> {
-    return new Promise((resolve, reject) => {
+    return new Promise((_resolve, _reject) => {
       const uuid = programme.id;
       // ============ initialize fake api ============ //
       // =============== end fake api ================ //
@@ -75,9 +78,9 @@ export class DatabaseService {
   }
 
   public getProgrammes(): Promise<Programme[]> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _reject) => {
       // ============ initialize fake api ============ //
-      resolve(fakeCourses);
+      resolve(this.db.fakeProgrammes);
       // =============== end fake api ================ //
     });
   }
@@ -86,7 +89,7 @@ export class DatabaseService {
     return new Promise((resolve, reject) => {
       // ============ initialize fake api ============ //
       if (id) {
-        const selectedProgramme: Programme = fakeProgrammes.find((programme) => programme.id === id);
+        const selectedProgramme: Programme = this.db.fakeProgrammes.find((programme) => programme.id === id);
         if (selectedProgramme) {
           resolve(selectedProgramme);
         } else {
@@ -99,9 +102,20 @@ export class DatabaseService {
     });
   }
 
+  public removeProgramme(id: string): Promise<any> {
+    return new Promise((resolve, _reject) => {
+      // ============ initialize fake api ============ //
+      this.getProgrammes().then((storedProgrammes) => {
+        const programmeIndex = storedProgrammes.findIndex((c) => c.id === id);
+        storedProgrammes.splice(programmeIndex, 1);
+        resolve();
+      });
+      // =============== end fake api ================ //
+    });
+  }
 
   public removeCourse(id: string): Promise<any> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _reject) => {
       // ============ initialize fake api ============ //
       this.getCourses().then((storedCourses) => {
         const courseIndex = storedCourses.findIndex((c) => c.id === id);
@@ -113,17 +127,11 @@ export class DatabaseService {
   }
 
   public getCourseCodes(): Promise<CourseCode[]> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _reject) => {
       // ============ initialize fake api ============ //
-      resolve(fakeCourseCodes);
+      resolve(this.db.fakeCourseCodes);
       // =============== end fake api ================ //
     });
   }
-  public getProgrammeCodes(): Promise<ProgrammeCode[]> {
-    return new Promise((resolve, reject) => {
-      // ============ initialize fake api ============ //
-      resolve(fakeProgrammeCodes);
-      // =============== end fake api ================ //
-    });
-  }
+  
 }

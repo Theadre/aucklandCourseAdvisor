@@ -4,10 +4,6 @@ export interface CourseCode {
   code: number;
 }
 
-export interface ProgrammeCode {
-  id: string;
-  name: string;
-}
 
 export interface Course {
   id: string;
@@ -22,9 +18,9 @@ export interface Course {
   description: string;
 }
 
-export interface Programme {
-  id: string;
-  title: string;
-  date: string;
+export class Programme {
+  id = '';
+  title = '';
+  date = '';
 }
 

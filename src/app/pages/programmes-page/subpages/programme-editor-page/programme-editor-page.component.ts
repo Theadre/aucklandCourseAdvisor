@@ -5,7 +5,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Programme, ProgrammeCode } from '../../../../app.interfaces';
+import { Programme } from '../../../../app.interfaces';
 import { DatabaseService } from '../../../../shared/database.service';
 
 @Component({
@@ -19,20 +19,25 @@ export class ProgrammeEditorPageComponent implements OnInit, OnDestroy {
   public programmeForm: FormGroup;
   public shouldLoadForm: boolean = false;
   private routeSubscription: Subscription;
-  public programmeCodes: ProgrammeCode[];
 
   constructor(
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     public readonly database: DatabaseService,
     private readonly formBuilder: FormBuilder
-  ) { }
+  ) {}
+
+  public ngOnInit(): void {
+    this.routeSubscription = this.route.params.subscribe((params) => {
+      this.programmeId = params && params.programmeId ? params.programmeId : null;
+    });
+  }
 
   public ngOnDestroy(): void {
     this.routeSubscription.unsubscribe();
   }
 
-  ngOnInit(): void {
+  private initializeForm(c: Programme): void {
   }
 
   public onFormSubmit(e: Event): void {
@@ -40,38 +45,6 @@ export class ProgrammeEditorPageComponent implements OnInit, OnDestroy {
     const formData: Programme = this.programmeForm.value;
     console.log(formData);
     console.log(this.programmeForm.valid);
-
-    this.routeSubscription = this.route.params.subscribe((params) => {
-      this.programmeId = params && params.programmeId ? params.programmeId : null;
-      this.database
-        .getProgrammeCodes()
-        .then((storedProgrammeCodes) => {
-          this.programmeCodes = storedProgrammeCodes;
-        })
-        .finally(() => {
-          this.database
-            .getCourse(this.programmeId)
-            .then(
-              (storedProgramme) => {
-                // if the course can retrieve the course data correctly!
-                this.initializeForm(storedProgramme);
-              },
-              () => {
-                // if the database can't find the selected course or there is no course id in url then asume is new course
-                this.initializeForm({
-                  id: this.database.generateId(),
-                  title: null,
-                  date: new Date().toDateString()
-                });
-              }
-            )
-            .finally(() => {
-              this.shouldLoadForm = true;
-            });
-        });
-
-    });
-
 
     // save new programme
     if (this.programmeForm.valid && !this.programmeId) {
@@ -87,18 +60,7 @@ export class ProgrammeEditorPageComponent implements OnInit, OnDestroy {
       });
     }
   }
-  private initializeForm(c: Programme): void {
-    function generateFormFields(programmeCodesIds: string[], allProgrammeCodes: ProgrammeCode[]): boolean[] {
-      const generatedArray = Array(allProgrammeCodes.length).fill(false);
-      programmeCodesIds.forEach((programmeId) => {
-        const index = allProgrammeCodes.findIndex((programmeCode) => programmeCode.id === programmeId);
-        if (index !== -1) {
-          generatedArray[index] = true;
-        }
-      });
-      return generatedArray;
-    }
-  }
+
   items = [
     'Carrots',
     'Tomatoes',
