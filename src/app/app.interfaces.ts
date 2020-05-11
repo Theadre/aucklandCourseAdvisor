@@ -24,3 +24,11 @@ export class Programme {
   date = '';
 }
 
+export class Student {
+  id = '';
+  firstName = '';
+  lasttName = '';
+  degree = '';
+  date = '';
+}
+

@@ -1,0 +1,40 @@
+<div class="responsive-wrapper">
+    <div class="page-title-area">
+        <h1 *ngIf="!studentId">Add new student</h1>
+        <h1 *ngIf="studentId">Update student</h1>
+    </div>
+</div>
+
+<form class="responsive-wrapper" [formGroup]="studentForm" (submit)="onFormSubmit($event)">
+
+    <!-- Hidden input to store data, maybe it is not needed but it shouldn't hurt to have -->
+    <input type="hidden" formControlName="id" />
+    <input type="hidden" formControlName="date" />
+
+    <h2 class="student-details">Student Details</h2>
+
+    <!-- Student lastName -->
+    <mat-form-field class="lastName-area" appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" formControlName="lastName" required />
+    </mat-form-field>
+
+    <!-- Student firstName -->
+    <mat-form-field class="firstName-area" appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" formControlName="firstName" required />
+    </mat-form-field>
+
+    <!-- Student degree Field -->
+    <mat-form-field class="degree-area" appearance="outline">
+        <mat-label>Degree</mat-label>
+        <mat-select formControlName="degree" required>
+            <mat-option>None</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">
+        <span *ngIf="!studentId">Add new student</span>
+        <span *ngIf="studentId">Update student</span>
+    </button>
+</form>

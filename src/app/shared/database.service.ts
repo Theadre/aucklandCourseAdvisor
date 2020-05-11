@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { Injectable } from '@angular/core';
 
-import { Course, CourseCode, Programme } from '../app.interfaces';
+import { Course, CourseCode, Programme, Student } from '../app.interfaces';
 import { FakeData } from './fake-data';
 
 @Injectable({
@@ -13,7 +13,7 @@ import { FakeData } from './fake-data';
 export class DatabaseService {
   saveProgramme: any;
 
-  constructor(private db: FakeData) {}
+  constructor(private db: FakeData) { }
 
   public generateId(): string {
     return uuidv4();
@@ -102,6 +102,61 @@ export class DatabaseService {
     });
   }
 
+  public saveStudent(student: Student): Promise<boolean> {
+    return new Promise((resolve, _reject) => {
+      // ============ initialize fake api ============ //
+      this.db.fakeStudents.push(student);
+      resolve();
+      // =============== end fake api ================ //
+    });
+  }
+
+
+  public updateStudent(student: Student): Promise<any> {
+    return new Promise((_resolve, _reject) => {
+      const uuid = student.id;
+      // ============ initialize fake api ============ //
+      // =============== end fake api ================ //
+    });
+  }
+
+  public getStudents(): Promise<Student[]> {
+    return new Promise((resolve, _reject) => {
+      // ============ initialize fake api ============ //
+      resolve(this.db.fakeStudents);
+      // =============== end fake api ================ //
+    });
+  }
+
+  public getStudent(id: string): Promise<Student> {
+    return new Promise((resolve, reject) => {
+      // ============ initialize fake api ============ //
+      if (id) {
+        const selectedStudent: Student = this.db.fakeStudents.find((student) => student.id === id);
+        if (selectedStudent) {
+          resolve(selectedStudent);
+        } else {
+          reject();
+        }
+      } else {
+        reject();
+      }
+      // =============== end fake api ================ //
+    });
+  }
+
+  public removeStudent(id: string): Promise<any> {
+    return new Promise((resolve, _reject) => {
+      // ============ initialize fake api ============ //
+      this.getStudents().then((storedStudents) => {
+        const studentIndex = storedStudents.findIndex((c) => c.id === id);
+        storedStudents.splice(studentIndex, 1);
+        resolve();
+      });
+      // =============== end fake api ================ //
+    });
+  }
+
   public removeProgramme(id: string): Promise<any> {
     return new Promise((resolve, _reject) => {
       // ============ initialize fake api ============ //
@@ -133,5 +188,7 @@ export class DatabaseService {
       // =============== end fake api ================ //
     });
   }
-  
+
+
+
 }

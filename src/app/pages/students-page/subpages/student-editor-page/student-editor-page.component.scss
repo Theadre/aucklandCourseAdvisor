@@ -1,0 +1,58 @@
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto auto;
+    gap: var(--app-padding) var(--app-padding);
+    grid-template-areas: 'studentDetailsArea studentDetailsArea' 'lastNameArea lastNameArea' 'firstNameArea firstNameArea' 'degreeArea degreeArea' 'submitArea submitArea';
+    background-color: white;
+    padding: 50px 40px;
+    border-radius: 4px;
+}
+
+.student-details {
+    grid-area: studentDetailsArea;
+}
+
+.lastName-area {
+    grid-area: lastNameArea;
+}
+
+.firstName-area {
+    grid-area: firstNameArea;
+}
+
+.degree-area {
+    grid-area: degreeArea;
+}
+
+button[type='submit'] {
+    grid-area: submitArea;
+    width: fit-content;
+    margin: 40px auto 0 auto;
+}
+
+h2,
+h3 {
+    margin: 0;
+    font-weight: 500;
+}
+
+h2 {
+    font-size: 1.3em;
+    font-weight: 600;
+    padding-bottom: 25px;
+}
+
+h3 {
+    font-size: 1em;
+    font-weight: 600;
+    padding-bottom: 25px;
+}
+
+mat-checkbox {
+    padding: 10px 14px;
+    background-color: #fff;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: solid 1px #e0e0e0;
+}

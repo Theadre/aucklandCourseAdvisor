@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Course, CourseCode, Programme } from '../app.interfaces';
+import { Course, CourseCode, Programme, Student } from '../app.interfaces';
 
 Injectable({
   providedIn: 'root'
@@ -55,6 +55,23 @@ fakeProgrammes: Programme[] = [
       id: '3',
       title: 'BE(Hans) in CSE',
       date: '2020-04-20',
+    }
+  ];
+
+  fakeStudents: Student[] = [
+    {
+      id: '1',
+      firstName: 'Gilbert',
+      lasttName: 'BOUGAINVILLEA',
+      degree: 'Postgraduate',
+      date: '2020-04-29',
+    },
+    {
+      id: '2',
+      firstName: 'Ekta',
+      lasttName: 'GAYA',
+      degree: 'Undergraduate',
+      date: '2020-04-25',
     }
   ];
 
