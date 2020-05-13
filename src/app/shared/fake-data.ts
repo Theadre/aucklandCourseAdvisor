@@ -60,16 +60,16 @@ fakeProgrammes: Programme[] = [
 
   fakeStudents: Student[] = [
     {
-      id: '1',
+      id: 1,
       firstName: 'Gilbert',
-      lasttName: 'BOUGAINVILLEA',
+      lastName: 'BOUGAINVILLEA',
       degree: 'Postgraduate',
       date: '2020-04-29',
     },
     {
-      id: '2',
+      id: 2,
       firstName: 'Ekta',
-      lasttName: 'GAYA',
+      lastName: 'GAYA',
       degree: 'Undergraduate',
       date: '2020-04-25',
     }

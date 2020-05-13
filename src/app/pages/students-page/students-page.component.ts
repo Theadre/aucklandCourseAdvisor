@@ -21,7 +21,7 @@ export class StudentsPageComponent implements OnInit {
     });
   }
 
-  public onDeleteButton(id: string): void {
+  public onDeleteButton(id: number): void {
     // remove from database
     this.database.removeStudent(id).then(() => {
       // on success remove from the page

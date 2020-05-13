@@ -5,7 +5,7 @@ import { StudentEditorPageComponent } from './student-editor-page.component';
 
 const routes: Routes = [
   { path: '', component: StudentEditorPageComponent },
-  { path: ':studentId', component: StudentEditorPageComponent },
+  { path: ':id', component: StudentEditorPageComponent },
 ];
 
 @NgModule({

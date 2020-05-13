@@ -9,7 +9,7 @@ const routes: Routes = [{ path: '', component: StudentsPageComponent},
   loadChildren: () => import('./subpages/student-editor-page/student-editor-page.module').then((m) => m.StudentEditorPageModule),
 },
 {
-  path: 'edit/:studentId',
+  path: 'edit/:id',
   loadChildren: () => import('./subpages/student-editor-page/student-editor-page.module').then((m) => m.StudentEditorPageModule),
 }];
 

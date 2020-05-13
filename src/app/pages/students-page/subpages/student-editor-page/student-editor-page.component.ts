@@ -1,19 +1,68 @@
-import { Subscription } from 'rxjs';
+//import { Subscription } from 'rxjs';
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Student } from '../../../../app.interfaces';
 import { DatabaseService } from '../../../../shared/database.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-student-editor-page',
   templateUrl: './student-editor-page.component.html',
   styleUrls: ['./student-editor-page.component.scss']
 })
-export class StudentEditorPageComponent implements OnInit, OnDestroy {
 
+export class StudentEditorPageComponent implements OnInit {
+   
+  private routeSubscription: Subscription;
+  
+  myForm: FormGroup;
+   id: number;
+
+   o = new Student();
+   constructor(private fb: FormBuilder, private route: ActivatedRoute
+    , private service: DatabaseService, private router: Router) { }
+
+ 
+    ngOnInit() {
+      this.createForm();
+      this.id = +this.route.snapshot.paramMap.get('id');
+      console.log(this.id);
+       if (this.id !== 0) {
+        this.service.getById(this.id).subscribe(r => {
+          this.o = r;
+          this.createForm();
+        });
+      } 
+    }
+
+    createForm() {
+      this.myForm = this.fb.group({
+        id: this.o.id,
+        firstName: [this.o.firstName, [Validators.required]],
+        lastName: [this.o.lastName, [Validators.required]],
+        date: new Date().toDateString(),
+        //degree: [this.o.degree, [Validators.required]],
+      });
+    }
+
+    submit(o: Student) {
+      if (this.id === 0) {
+        this.o.date = new Date().toDateString();
+        this.service.post(o).subscribe(r => {
+        this.router.navigate(['/students']);
+        });
+      } 
+       else {
+        this.service.put(o.id, o).subscribe(r => {
+          this.router.navigate(['/students']);
+        });
+      } 
+    }
+
+/*
   public studentId: string;
   public studentForm: FormGroup;
   public shouldLoadForm: boolean = false;
@@ -58,5 +107,5 @@ export class StudentEditorPageComponent implements OnInit, OnDestroy {
         this.router.navigate(['/students']);
       });
     }
-  }
+  } */
 }

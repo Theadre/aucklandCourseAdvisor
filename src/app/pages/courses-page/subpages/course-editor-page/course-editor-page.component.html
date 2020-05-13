@@ -58,7 +58,6 @@
         <mat-checkbox formControlName="four">60 points</mat-checkbox>
     </div>
 
-
     <!-- Restrictions Field -->
     <div class="restrictions-area" formArrayName="restrictions" appearance="outline">
         <h3>Restrictions</h3>
@@ -67,6 +66,7 @@
         </mat-checkbox>
     </div>
 
+    <button mat-button [routerLink]="['/courses']" type="button">Cancel</button>&nbsp;&nbsp;
     <button mat-raised-button color="primary" type="submit">
     <span *ngIf="!courseId">Add new course</span>
     <span *ngIf="courseId">Update course</span>

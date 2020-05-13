@@ -19,16 +19,16 @@ export interface Course {
 }
 
 export class Programme {
-  id = '';
-  title = '';
-  date = '';
+  id: string;
+  title: string;
+  date: string;
 }
 
 export class Student {
-  id = '';
-  firstName = '';
-  lasttName = '';
-  degree = '';
-  date = '';
+  id: number;
+  firstName: string;
+  lastName: string;
+  date: string;
+  degree: string;
 }
 

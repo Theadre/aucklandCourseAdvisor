@@ -128,7 +128,7 @@ export class DatabaseService {
     });
   }
 
-  public getStudent(id: string): Promise<Student> {
+  public getStudent(id: number): Promise<Student> {
     return new Promise((resolve, reject) => {
       // ============ initialize fake api ============ //
       if (id) {
@@ -145,7 +145,7 @@ export class DatabaseService {
     });
   }
 
-  public removeStudent(id: string): Promise<any> {
+  public removeStudent(id: number): Promise<any> {
     return new Promise((resolve, _reject) => {
       // ============ initialize fake api ============ //
       this.getStudents().then((storedStudents) => {
@@ -189,6 +189,20 @@ export class DatabaseService {
     });
   }
 
+  post(o: Student) {
+    const i = this.db.fakeStudents.push(o);
+    return of(i);
+  }
 
+  getById(id: number) {
+    const i = this.db.fakeStudents.findIndex(e => e.id === id);
+    const r: Student = this.db.fakeStudents[i];
+    return of(r);
+  }
+  put(id: number, o: Student) {
+    const i = this.db.fakeStudents.findIndex(e => e.id === id);
+    this.db.fakeStudents[i] = o;
+    return of({});
+  }
 
 }
