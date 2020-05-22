@@ -1,0 +1,34 @@
+import { User } from './model/models';
+import { RoutingControllersOptions } from 'routing-controllers';
+import { ConnectionOptions } from 'typeorm';
+
+export const config: IConfig = {
+  jwt: {
+    jwtSecret: '@QEGTUI'
+  },
+  db: {
+    type: 'sqlite',
+    name: 'default',
+    database: `${__dirname}/data/db.sqlite`,
+    entities: [
+      User,
+    ],
+    synchronize: true,
+    logging: [
+      'error',
+    ],
+  },
+  server: {
+    routePrefix: '/api',
+    cors: true,
+    classTransformer: true,
+    controllers: [`${__dirname}/controllers/*.ts`, `${__dirname}/controllers/*.js`],
+    middlewares: [`${__dirname}/middlewares/*.ts`, `${__dirname}/middlewares/*.js`],
+  }
+}
+
+interface IConfig {
+  jwt: { jwtSecret: string };
+  server: RoutingControllersOptions,
+  db: ConnectionOptions,
+}
