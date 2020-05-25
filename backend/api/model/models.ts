@@ -34,8 +34,8 @@ export class User {
     @OneToMany(() => Programme, programmes => programmes.user)
     programmes: Programme[];
 
-    @ManyToMany(() => CourseCode, coursecodes => coursecodes.users)
-    coursecodes: CourseCode[];
+    // @ManyToMany(() => CourseCode, coursecodes => coursecodes.users)
+    // coursecodes: CourseCode[];
 
 }
 
@@ -45,7 +45,7 @@ export class Programme {
 
     @PrimaryGeneratedColumn()
     id = null;
-    
+
     @Column('text')
     title = '';
 
@@ -134,7 +134,7 @@ export class Course {
     semester: { first: boolean; second: boolean };
 
     @Column('boolean')
-    valueArea: { one:boolean;  two:boolean; three:boolean; four:boolean };
+    valueArea: { one: boolean; two: boolean; three: boolean; four: boolean };
 
     @Column('text')
     description = '';
@@ -142,9 +142,9 @@ export class Course {
     @ManyToMany(() => Programme, programmes => programmes.courses, { onDelete: 'CASCADE' })
     programmes: Programme[];
 
-    @OneToOne(() => CourseCode, coursecode => coursecode.course, { onDelete: 'CASCADE' })
-    coursecode: CourseCode;
-    
+    // @OneToOne(() => CourseCode, coursecode => coursecode.course, { onDelete: 'CASCADE' })
+    // coursecode: CourseCode;
+
     @ManyToMany(() => User, users => users.courses, { onDelete: 'CASCADE' })
     users: User[];
 }
@@ -159,7 +159,7 @@ export class CourseCode {
     name = '';
 
     @Column('text')
-    code = null;
+    code = '';
 
     @Column('integer')
     courseId = 0;
@@ -167,11 +167,11 @@ export class CourseCode {
     @Column('date')
     date = new Date();
 
-    @OneToOne(() => Course, course => course.coursecode, { onDelete: 'CASCADE' })
-    course: Course;
+    // @OneToOne(() => Course, course => course.coursecode, { onDelete: 'CASCADE' })
+    // course: Course;
 
-    @ManyToMany(() => User, users => users.coursecodes, { onDelete: 'CASCADE' })
-    users: User[];
+    // @ManyToMany(() => User, users => users.coursecodes, { onDelete: 'CASCADE' })
+    // users: User[];
 }
 
 

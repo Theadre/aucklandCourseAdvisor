@@ -4,6 +4,14 @@ export interface CourseCode {
   code: number;
 }
 
+export class Code {
+  id = 0;
+  name = '';
+  code = '';
+  courseId = 0;
+  date = new Date();
+}
+
 
 export interface Course {
   id: string;

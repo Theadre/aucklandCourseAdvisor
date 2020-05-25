@@ -1,0 +1,39 @@
+<div class="responsive-wrapper">
+  <div class="page-title-area">
+    <h1>Code</h1>
+  </div>
+</div>
+
+<form class="responsive-wrapper" (ngSubmit)="submit(myForm.value)" [formGroup]="myForm">
+  <!-- Course Title Field -->
+  <mat-form-field class="title-area" appearance="outline">
+    <mat-label>name</mat-label>
+    <input matInput type="text" formControlName="name" required />
+  </mat-form-field>
+
+  <!-- Description Title Field -->
+  <mat-form-field class="description-area" appearance="outline">
+    <mat-label>code</mat-label>
+    <input matInput type="text" formControlName="code" />
+  </mat-form-field>
+
+  <!-- Course Code Field -->
+  <mat-form-field class="code-area" appearance="outline">
+    <mat-label>Course Code</mat-label>
+    <mat-select formControlName="code" required>
+      <mat-option>...</mat-option>
+      <mat-option *ngFor="let e of courses" [value]="e.id">{{ e.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+
+  <button mat-button [routerLink]="['/codes']" type="button">Cancel</button>&nbsp;&nbsp;
+  <button mat-raised-button color="primary" type="submit">Valider</button>
+</form>

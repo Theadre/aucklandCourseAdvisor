@@ -7,6 +7,21 @@ export class CourseCodesController {
 
   private service = getRepository(CourseCode);
 
+  @Get('/get')
+  async get() {
+    console.log('hehhheh')
+    return await this.service.find();
+  }
+
+  @Get('/test')
+  test() {
+    return ['ff', 'eee'];
+  }
+
+  @Get('/getOne/:id')
+  async getOne(@Param('id') id: number) {
+    return await this.service.findOne(id);
+  }
 
   @Post('/post')
   async post(@Body() model: CourseCode) {
@@ -16,11 +31,6 @@ export class CourseCodesController {
   @Put('/put/:id')
   async put(@Param('id') id: number, @Body() model: CourseCode) {
     return await this.service.update(id, model);
-  }
-
-  @Get('/get/:id')
-  async get(@Param('id') id: number) {
-    return await this.service.findOne(id);
   }
 
   @Delete('/delete/:id')
